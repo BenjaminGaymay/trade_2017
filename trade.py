@@ -42,7 +42,7 @@ class Datas:
 
 
 def main():
-	datas = Datas("./datas/NFLX.csv")
+	datas = Datas("./datas/NFLX2.csv")
 
 	# -1 UNDEF
 	# 0 BUY
@@ -50,6 +50,7 @@ def main():
 	state = -1
 
 	money = 1000.0
+	action = 0
 	_list = []
 	i = 0
 	print("Money at start: %.2f$" % money)
@@ -59,14 +60,16 @@ def main():
 		else:
 			break
 		avg = datas.calc_avg(_list)
-		if _list[i] > avg and _list[i] > _list[i-1]:
-			print("SELL")
+		if _list[i] > avg and _list[i] > _list[i-1] and action > 0:
+			print("SELL : %.2f$" % _list[i])
 			money += _list[i]
 			state = 0
-		elif _list[i] < avg and _list[i] < _list[i-1]:
-			print("BUY")
+			action -= 1
+		elif _list[i] < avg and _list[i] < _list[i-1] and money - _list[i] > 0:
+			print("BUY : %.2f$" % _list[i])
 			money -= _list[i]
 			state = 1
+			action +=1
 		i += 1
 	print("Money at end: %.2f$" % money)
 
