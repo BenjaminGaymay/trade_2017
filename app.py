@@ -5,15 +5,15 @@ import csv
 app = Flask(__name__)
 
 def load(filename):
-	p = []
-	d = []
+	prices = []
+	dates = []
 	with open(filename, 'r') as csv_file:
 		csv_reader = csv.reader(csv_file)
 		next(csv_reader)
 		for r in csv_reader:
-			d.append(int(r[0].split('-')[0]))
-			p.append(float(r[1]))
-	return d, p
+			dates.append(int(r[0].split('-')[0]))
+			prices.append(float(r[1]))
+	return dates, prices
 
 @app.route('/')
 def main():
