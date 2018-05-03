@@ -59,11 +59,11 @@ def main():
 		else:
 			break
 		avg = datas.calc_avg(_list)
-		if _list[i] > avg and state != 0:
+		if _list[i] > avg and _list[i] > _list[i-1]:
 			print("SELL")
 			money += _list[i]
 			state = 0
-		elif _list[i] < avg and state != 1:
+		elif _list[i] < avg and _list[i] < _list[i-1]:
 			print("BUY")
 			money -= _list[i]
 			state = 1
