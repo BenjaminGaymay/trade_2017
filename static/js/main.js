@@ -10,8 +10,15 @@ function start() {
 		data: {
 			labels: dates,
 			datasets: [{
+				label: "Netflix",
 				data: prices
 			}]
+		},
+		options: {
+			title: {
+				display: true,
+				text: "NETFLIX"
+			}
 		}
 	});
 }
