@@ -7,3 +7,11 @@
 		</div>
 	</div>
 {% endblock body %}
+
+{% block js %}
+{{ super() }}
+<script>
+    let dates = {{ dates }};
+    let prices = {{ prices }};
+</script>
+{% endblock js %}
