@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-from flask import Flask, render_template
+from flask import Flask, render_template, jsonify
 import csv
 
 app = Flask(__name__)
@@ -14,6 +14,7 @@ def load(filename):
 			dates.append(int(r[0].split('-')[0]))
 			prices.append(float(r[1]))
 	return dates, prices
+
 
 @app.route('/')
 def main():
