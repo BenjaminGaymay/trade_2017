@@ -49,9 +49,10 @@ def main():
 	# 1 SELL
 	state = -1
 
-	money = 1000.0
+	money = 10000.0
 	action = 0
 	_list = []
+	evolution = []
 	i = 0
 	print("Money at start: %.2f$" % money)
 	while True:
@@ -70,8 +71,12 @@ def main():
 			money -= _list[i]
 			state = 1
 			action +=1
+		evolution.append(money)
 		i += 1
 	print("Money at end: %.2f$" % money)
+	plt.title("Money's evolution")
+	plt.plot(evolution)
+	plt.show()
 
 
 if __name__ == '__main__':
