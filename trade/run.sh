@@ -8,4 +8,4 @@ function ctrl_c {
 }
 
 cd push_index/
-./main.py 0.01 360 | ../test_client/app.py | ../server/main.py
+./main.py 0.1 360 | ../test_client/app.py | ../server/main.py

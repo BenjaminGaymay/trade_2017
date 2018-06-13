@@ -25,6 +25,9 @@ class Trade:
     def __init__(self):
         self.data = Data()
         self.account = Account(10000)
+        self.markets = ['crypto', 'forex', 'stock_exchange', 'raw_material']
+        self.inc = 0
+        self.dec = 0
 
     def sell_all(self):
         """Sell all shares
@@ -45,9 +48,9 @@ class Trade:
             account {Account} -- contains money+current shares
             data {Data} -- contains all different datas of shares
         """
-        markets = ['crypto', 'forex', 'stock_exchange', 'raw_material']
 
-        for market in markets:
+
+        for market in self.markets:
             if self.data.current[market] < self.data.avg[market] and \
                 self.data.current[market] < self.data.history[market][-2] and \
                 self.account.money - self.data.current[market] >= 0:
@@ -61,6 +64,35 @@ class Trade:
                 self.account.shares[market] -= 1
                 self.account.money += self.data.current[market]
 
+    def try_sell(self):
+        """
+        try_sell
+
+        sell or not, depends of the price
+        """
+        for market in self.markets:
+            if self.data.current[market] < self.data.history[market][-2]:
+                self.inc = 0
+                self.dec += 1
+            if self.dec >= 3 and self.account.shares[market] > 0:
+                self.account.sell_share(market, self.data.current[market])
+                print('SELL:1:{}'.format(market), flush=True)
+
+
+    def try_buy(self):
+        """
+        try_buy
+
+        buy or not, depends of the price
+        """
+        for market in self.markets:
+            if self.data.current[market] > self.data.history[market][-2]:
+                self.dec = 0
+                self.inc += 1
+            if self.inc >= 3 and self.account.money >= self.data.current[market]:
+                self.account.buy_share(market, self.data.current[market])
+                print('BUY:1:{}'.format(market), flush=True)
+        pass
 
     def run(self):
         """
@@ -80,7 +112,9 @@ class Trade:
             self.data.calc_avg()
             if len(self.data.history['forex']) <= 1:
                 continue
-            self.check_buy()
+            # self.check_buy()
+            self.try_buy()
+            self.try_sell()
             print("STATS", flush=True)
 
 
