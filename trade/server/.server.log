@@ -1,13 +1,13 @@
 marketplace;nb_transaction
-forex;16
-crypto;0
-stock_exchange;30
-raw_material;94
+forex;0
+stock_exchange;0
+raw_material;2
+crypto;22
 
 marketplace;shares
-forex;2
-crypto;0
+forex;0
 stock_exchange;0
 raw_material;0
+crypto;0
 
-current_money;13123.794564000003
+current_money;1222436.6978140003

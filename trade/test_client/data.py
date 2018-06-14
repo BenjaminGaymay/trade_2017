@@ -1,4 +1,4 @@
-
+#!/usr/bin/env python3
 ##
 ## EPITECH PROJECT, 2018
 ## Sans titre(Espace de travail)
@@ -40,7 +40,9 @@ class Data:
         for elem in data:
             for key in self.current:
                 if elem.split(':')[0] == key:
-                    value = float(elem.split(':')[1])
+                    string = elem.split(':')[1].replace(',', '.')
+
+                    value = float(string)
                     self.current[key] = value
                     self.history[key].append(value)
 
@@ -52,6 +54,8 @@ class Data:
 
 
         for key in self.avg:
+            # tmp = list(reversed(self.history[key]))
+            # self.avg[key] = sum(tmp[:14]) / len(tmp[:14])
             self.avg[key] = sum(self.history[key]) / len(self.history[key])
 
     def __str__(self):
@@ -60,3 +64,4 @@ class Data:
                                            self.current['forex'],
                                            self.current['stock_exchange'],
                                            self.current['raw_material'])
+

@@ -5,7 +5,7 @@ import time
 import sys
 
 class Manager:
-    
+
     # Indexes list
     idx_name = ["crypto", "raw_material", "stock_exchange", "forex"]
 
@@ -79,8 +79,8 @@ class Manager:
 
     def InitDatas(self):
         for marketplace in self.idx_name:
-            self.idx_list[marketplace] = list()        
-    
+            self.idx_list[marketplace] = list()
+
     def Launch(self):
         self.InitDatas()
         self.GetDatas()
