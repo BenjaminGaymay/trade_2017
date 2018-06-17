@@ -10,7 +10,6 @@
 """Program for the trade2017 projet Epitech"""
 
 from trade import Trade
-import sys
 
 def main():
     """Main function

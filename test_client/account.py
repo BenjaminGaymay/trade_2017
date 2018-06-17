@@ -17,7 +17,7 @@ import logging
 
 LOG_FORMAT = '%(levelname)s: (%(asctime)s) - %(message)s \t\t[%(relativeCreated)dms]'
 logging.basicConfig(filename="trade.log", level=logging.DEBUG, filemode='w', format=LOG_FORMAT)
-logger = logging.getLogger()
+LOGGER = logging.getLogger()
 
 class Account:
     """Stores account informations (money, shares)"""
@@ -46,12 +46,11 @@ class Account:
         :return: bought or otn
         :rtype: bool
         """
-
         total = price * ammount
         if self.money - total >= 0:
             self.shares[share] += ammount
             self.money -= total
-            logger.info('BUY:{}:{}:{}€'.format(ammount, share, price))
+            LOGGER.info('BUY:%d:%s:%s€', ammount, share, total)
             print('BUY:{}:{}'.format(ammount, share), flush=True)
             return True
         return False
@@ -76,7 +75,7 @@ class Account:
         if self.shares[share] > 0 and ammount <= self.shares[share]:
             self.shares[share] -= ammount
             self.money += total
-            logger.info('SELL:{}:{}:{}€'.format(ammount, share, price))
+            LOGGER.info('SELL:%d:%s:%s€', ammount, share, total)
             print('SELL:{}:{}'.format(ammount, share), flush=True)
             return True
         return False

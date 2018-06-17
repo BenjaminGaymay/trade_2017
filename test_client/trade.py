@@ -62,8 +62,8 @@ class Trade:
 
         for market in self.markets:
             if self.data.get_bought_price(market) != -1 and \
-                self.data.get_current_day(market) > percentage(105, self.data.get_bought_price(market)):
-                if self.account.sell_share(market, self.data.get_current_day(market)):
+                self.data.get_current_day(market) > percentage(102.5, self.data.get_bought_price(market)):
+                if self.account.sell_share(market, self.data.get_current_day(market), self.account.shares[market]):
                     self.data.bought_price[market] = -1
 
             # if self.data.get_current_day(market) > self.data.avg[market] and \
@@ -90,9 +90,11 @@ class Trade:
             return
 
         for market in self.markets:
-            if self.data.get_current_day(market) < percentage(95, self.data.get_prev_day(market)) and \
+            if self.data.get_current_day(market) < percentage(97.5, self.data.get_prev_day(market)) and \
                 self.data.bought_price[market] == -1:
-                if self.account.buy_share(market, self.data.get_current_day(market)):
+                to_buy = int(self.account.money / self.data.get_current_day(market))
+                if to_buy > 0 and \
+                    self.account.buy_share(market, self.data.get_current_day(market), ammount=to_buy):
                     self.data.bought_price[market] = self.data.get_current_day(market)
 
             # if self.data.get_current_day(market) < self.data.avg[market] and \

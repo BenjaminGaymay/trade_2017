@@ -114,4 +114,3 @@ class Data:
                                            self.current['forex'],
                                            self.current['stock_exchange'],
                                            self.current['raw_material'])
-
