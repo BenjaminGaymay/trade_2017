@@ -104,8 +104,6 @@ class Data:
 
 
         for key in self.avg:
-            # tmp = list(reversed(self.history[key]))
-            # self.avg[key] = sum(tmp[:14]) / len(tmp[:14])
             self.avg[key] = sum(self.history[key]) / len(self.history[key])
 
     def __str__(self):

@@ -15,7 +15,7 @@ Stores informations
 
 import logging
 
-LOG_FORMAT = '%(levelname)s: (%(asctime)s) - %(message)s \t\t[%(relativeCreated)dms]'
+LOG_FORMAT = '%(levelname)s: (%(asctime)s) [%(relativeCreated)dms]\t-\t%(message)s'
 logging.basicConfig(filename="trade.log", level=logging.DEBUG, filemode='w', format=LOG_FORMAT)
 LOGGER = logging.getLogger()
 
