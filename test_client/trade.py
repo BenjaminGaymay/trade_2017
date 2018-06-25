@@ -67,12 +67,6 @@ class Trade:
                 if self.account.sell_share(market, self.data.get_current_day(market), self.account.shares[market]):
                     self.data.bought_price[market] = -1
 
-            # if self.data.get_current_day(market) > self.data.avg[market] and \
-            #     self.data.get_current_day(market) < self.data.get_prev_day(market) and \
-            #     self.account.shares[market] > 0:
-            #     self.account.sell_share(market, self.data.get_current_day(market))
-
-
     def try_buy(self):
         """
         try_buy
@@ -99,12 +93,12 @@ class Trade:
                     self.account.buy_share(market, self.data.get_current_day(market), ammount=to_buy):
                     self.data.bought_price[market] = self.data.get_current_day(market)
 
-            # if self.data.get_current_day(market) < self.data.avg[market] and \
-            #     self.data.get_current_day(market) < self.data.get_prev_day(market) and \
-            #     self.account.money - self.data.get_current_day(market) >= 0:
-            #     self.account.buy_share(market, self.data.get_current_day(market))
 
     def display(self):
+        """
+        Plot some informations
+        """
+
         for _key, value in self.data.history.items():
             plt.plot(value)
         plt.show()
@@ -123,7 +117,6 @@ class Trade:
             input_stdin = get_data_from_stdin()
             if input_stdin is None:
                 self.sell_all()
-                print('aaaa', flush=True, file=sys.stderr)
                 print("STATS", flush=True)
                 print("EXIT", flush=True)
                 if len(sys.argv) == 2 and sys.argv[1] == '--plot':
